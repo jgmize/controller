@@ -25,7 +25,7 @@ class DockerClient(object):
     """Use the Docker API to pull, tag, build, and push images to deis-registry."""
 
     def __init__(self):
-        timeout = os.environ.get('DOCKER_CLIENT_TIMEOUT', docker.constants.DEFAULT_TIMEOUT_SECONDS)
+        timeout = int(os.environ.get('DOCKER_CLIENT_TIMEOUT', docker.constants.DEFAULT_TIMEOUT_SECONDS))
         self.client = docker.Client(version='auto', timeout=timeout)
         self.registry = settings.REGISTRY_HOST + ':' + str(settings.REGISTRY_PORT)
 
